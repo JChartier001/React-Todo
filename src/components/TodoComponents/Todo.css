@@ -9,8 +9,9 @@ body{
 .App{
     position: absolute;
     bottom: 50%;
-    right: 25%;
+    right: 250px;
     width: 400px;
+    
     /* display: flex;
     justify-content: flex-end;
     align-items: center; */
@@ -23,7 +24,14 @@ body{
     align-items:  center;
     padding-left: 2%;
     margin: 3%;
+    width: 200px;
 }
+
+.task.completed{
+    text-decoration: line-through;
+    background: black;
+}
+
 label{
    margin: 1%;
 }
@@ -31,6 +39,4 @@ label{
 form {
     width: 100%;
 }
-.toDoForm{
-    /* width: 100%; */
-}
+

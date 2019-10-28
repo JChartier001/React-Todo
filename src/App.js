@@ -40,7 +40,7 @@ class App extends React.Component {
         if (task.id === id) {
           return {
             ...task,
-            completed: task.completed
+            completed: !task.completed
           }; }
           else {
             return task;

@@ -1,5 +1,6 @@
 import React from "react";
 import ToDo from "./Todo";
+import { tsAnyKeyword } from "@babel/types";
 
 
 
@@ -13,6 +14,7 @@ const ToDoList = props =>{
             key={task.id}
             id={task.id}
             task={task.task}
+            completed={task.completed}
             toggleDone={props.toggleDone}
             />
         ))}
