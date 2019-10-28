@@ -10,7 +10,27 @@ body{
     position: absolute;
     bottom: 50%;
     right: 25%;
+    width: 400px;
     /* display: flex;
     justify-content: flex-end;
     align-items: center; */
+}
+
+.task{
+    background: salmon;
+    height: 30px;
+    display: flex;
+    align-items:  center;
+    padding-left: 2%;
+    margin: 3%;
+}
+label{
+   margin: 1%;
+}
+
+form {
+    width: 100%;
+}
+.toDoForm{
+    /* width: 100%; */
 }

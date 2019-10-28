@@ -9,7 +9,7 @@ const ToDoList = props =>{
     <div className="toDoList">
         {props.toDo.map(task => (
             // console.log("inMap", task)
-            <ToDo 
+            <ToDo className="task"
             key={task.id}
             id={task.id}
             task={task.task}
