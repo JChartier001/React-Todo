@@ -1,19 +1,22 @@
 import React from "react";
+import ToDo from "./Todo";
 
 
-const handleButtonClick = () => {
-    
-}
 
-const ToDoList = () =>{
+const ToDoList = props =>{
+    console.log("ToDOLIst", props);
     return (
-        <div className="toDoList">
-            <form>
-                <input type="text" placeholder="Enter To Do Item" />
-                <button onClick={handleButtonClick}className="addNew">Add To Do</button>
-            </form>
-        </div>
-    );
+    <div className="toDoList">
+        {props.toDo.map(task => (
+            // console.log("inMap", task)
+            <ToDo 
+            key={task.id}
+            id={task.id}
+            task={task.task}
+            toggleDone={props.toggleDone}
+            />
+        ))}
+    </div>
+    )
 };
-
 export default ToDoList;
