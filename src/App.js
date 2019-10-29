@@ -8,6 +8,16 @@ const data= [{
   task: "Complete Prep",
   id: "201910281359",
   completed: false
+},
+{
+  task: 'Organize Garage',
+  id: 1528817077286,
+  completed: false
+},
+{
+  task: 'Bake Cookies',
+  id: 1528817084358,
+  completed: false
 }];
 class App extends React.Component {
   constructor(){
@@ -30,6 +40,7 @@ class App extends React.Component {
   };
 
   filterDone = () => {
+    this.state.toDo.filter(completed => completed)
 
   };
 
