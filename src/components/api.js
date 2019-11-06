@@ -5,7 +5,7 @@
 export const fetchAPITodos = () =>
     new Promise((resolve) =>
     setTimeout(()=> resolve([
-        {id:Date.now(), title: "Write React Hooks book", completed: true},
-        {id:Date.now(), title: "Promise Book", completed:false}    
+        {id:3892987589, title: "Learn about reducers", completed: false},
+         
 ]), 100)
 )
