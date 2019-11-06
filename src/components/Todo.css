@@ -24,16 +24,21 @@ body{
     align-items:  center;
     padding-left: 2%;
     margin: 3%;
-    width: 200px;
+    width: 300px;   
+}
+
+.task  button{
+    margin:10px;
 }
 
 .task.completed{
     text-decoration: line-through;
-    background: black;
+    
 }
 
 label{
    margin: 1%;
+   font-size:.7rem;
 }
 
 form {

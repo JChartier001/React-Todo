@@ -11,10 +11,11 @@ export default function TodoItem ({title, completed, id, toggleTodo, removeTodo}
     }
 
     return(
-        <div key={id} style={{ width: 400, height: 25}}>
-            <input type="checkbox" checked={completed} onChange={handleToggle}/>
+        <div key={id} className={`task ${completed ? ' completed' : ''}`}>
+            <label htmlFor="complete">Done</label>
+            <input type="checkbox" name="complete" checked={completed} onChange={handleToggle}/>
             {title}
-            <button style={{ float: 'right'}} onClick={handleRemove}>x</button>
+            <button style={{ float: 'right'}} onClick={handleRemove}>Clear</button>
         </div>
     )
     }

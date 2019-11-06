@@ -1,6 +1,7 @@
 import React from "react";
 
 function TodoFilterItem ({ name, filterTodos, filter='all' }){
+    console.log(filterTodos)
     
     function handleFilter (){
         filterTodos(name)
@@ -18,6 +19,7 @@ function TodoFilterItem ({ name, filterTodos, filter='all' }){
 
 
 export default function TodoFilter (props) {
+    console.log(props)
     return(
         <div>
             <TodoFilterItem {...props} name="all"/> {'/'}

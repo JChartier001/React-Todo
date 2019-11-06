@@ -51,12 +51,10 @@ function App (){
     
     return(
       <StateContext.Provider value={filteredTodos}>
-        <div style={{ width: 400}}>
-          <AddToDo addTodo={addTodo} />
-          <hr />
-          <TodoList toggleTodo={toggleTodo} removeTodo={removeTodo} />
-          <hr />
-          <TodoFilter filter={state.filter} filterTodos={filterTodos}/>
+        <div className="App">
+          <AddToDo addTodo={addTodo} />          
+          <TodoList toggleTodo={toggleTodo} removeTodo={removeTodo} />          
+          {/* <TodoFilter filter={state.filter} filterTodos={filterTodos}/> */}
         </div>
       </StateContext.Provider>
     )
