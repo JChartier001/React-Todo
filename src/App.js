@@ -1,73 +1,65 @@
-import React from 'react';
-import ToDoForm from "./components/TodoComponents/TodoForm"
-import ToDoList from "./components/TodoComponents/TodoList"
-import "../src/components/TodoComponents/Todo.css";
+import React, {useReducer, useEffect, useMemo} from 'react';
+import appReducer from "./reducers/reducer";
+import "../src/components/Todo.css";
+import StateContext from "./components/StateContext";
+import {fetchAPITodos} from "./components/api";
+import TodoFilter from './components/TodoFilter';
+import AddToDo from "./components/AddToDo";
+import TodoList from "./components/TodoList"
 
 
-const data= [{
-  task: "Complete Prep",
-  id: "201910281359",
-  completed: false
-},
-{
-  task: 'Organize Garage',
-  id: 1528817077286,
-  completed: false
-},
-{
-  task: 'Bake Cookies',
-  id: 1528817084358,
-  completed: false
-}];
-class App extends React.Component {
-  constructor(){
-    super();
-    this.state = {toDo: data};
-  }
+
+
+function App (){
+  const [state, dispatch] = useReducer(appReducer, {todos: [], filter:'all'})
+
+
+  useEffect(() => {
+    fetchAPITodos().then((todos) =>
+      dispatch({ type: 'FETCH_TODOS', todos})
+    )
+    }, [])
   
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
-  addTask = task =>{
-    const newTask = {
-      task: task,
-      id: Date.now(),
-      completed: false
-    }
-    this.setState({
-      toDo: [...this.state.toDo, newTask]
-    });
-  };
+    const filteredTodos = useMemo(() => {
+      const {filter, todos} = state
+      switch (filter) {
+        case "active":
+          return todos.filter(t => t.completed === false)
+        case "completed":
+          return todos.filter(t => t.completed === true)
+        default:
+          case "all":
+            return todos
+      }
+      }, [state])
 
-  filterDone = () => {
-    this.state.toDo.filter(completed => completed)
-
-  };
-
-  toggleDone = id => {
-    console.log("ID",id);
-    this.setState({
-      toDo: this.state.toDo.map(task =>{
-        if (task.id === id) {
-          return {
-            ...task,
-            completed: !task.completed
-          }; }
-          else {
-            return task;
-          }
-      })
-    });
-  };
-  render() {
-    return (
-      <div className="App">
-        <ToDoForm addTask={this.addTask} />
-        <ToDoList toggleDone = {this.toggleDone} toDo={this.state.toDo} />
-      </div>
-    );
+  function addTodo (title) {
+    dispatch({type: "ADD_TODO", title})
   }
-}
 
+  function toggleTodo (id) {
+   dispatch({ type: "TOGGLE_TODO", id})
+  }
+
+  function removeTodo (id){
+   dispatch({ type: "REMOVE_TODO", id})
+  }
+
+  function filterTodos (filter) {
+   dispatch({type: 'FILTER_TODO', filter})
+    }
+    
+    return(
+      <StateContext.Provider value={filteredTodos}>
+        <div style={{ width: 400}}>
+          <AddToDo addTodo={addTodo} />
+          <hr />
+          <TodoList toggleTodo={toggleTodo} removeTodo={removeTodo} />
+          <hr />
+          <TodoFilter filter={state.filter} filterTodos={filterTodos}/>
+        </div>
+      </StateContext.Provider>
+    )
+  
+    }
 export default App;
-
